@@ -1,0 +1,72 @@
+version: '1.0'
+services:
+  kong_database:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=kong
+      - POSTGRES_DB=kong
+      - POSTGRES_PASSWORD=kongpass
+    container_name:
+      kong_database
+    networks:
+      - kong-net
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL=postgres@gmail.com
+      PGADMIN_DEFAULT_PASSWORD=root
+    networks:
+      - kong-net
+    depends_on:
+      - kong_database
+  kong_gateway:
+    image: kong/kong-gateway:latest
+    container_name: kong_gateway
+    ports:
+      - 8000:8000
+      - 8001:8001
+      - 8002:8002
+      - 8003:8003
+      - 8004:8004
+      - 8443:8443
+      - 8444:8444
+      - 8445:8445
+    environment:
+      - KONG_DATABASE=postgres
+      - KONG_PG_HOST=kong_database # docker container name
+      - KONG_PG_USER=kong
+      - KONG_PG_PASSWORD=kongpass
+      - KONG_PASSWORD=test
+      - KONG_PROXY_ACCESS_LOG=/dev/stdout
+      - KONG_ADMIN_ACCESS_LOG=/dev/stdout
+      - KONG_PROXY_ERROR_LOG=/dev/stderr
+      - KONG_ADMIN_ERROR_LOG=/dev/stderr
+      - KONG_ADMIN_LISTEN=0.0.0.0:8001
+      - KONG_ADMIN_GUI_URL=http://0.0.0.0:8002
+
+    command: sh -c "kong migrations bootstrap && kong start"
+    networks:
+      - kong-net
+    depends_on:
+      - kong_database
+  konga_web:
+    image: pantsel/konga
+    container_name: konga_web
+    ports:
+      - 1337:1337
+    networks:
+      - kong-net
+    environment:
+      NODE_ENV: development
+      TOKEN_SECRET: secret
+    depends_on:
+      - kong_database
+      - kong_gateway
+networks:
+  kong-net:
+    name: kong-net
+    driver: bridge
