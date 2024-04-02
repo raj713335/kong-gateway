@@ -231,16 +231,16 @@ Finally, visit https://localhost:8002 to view Kong Manager.
 
 # Add Custom Plugin to Kong
 
-Create a folder say keycloak-introspection and play both lua files inside it and copy this folder to Kong’s container in docker via the below command.
+Create a folder say mandate_header and play both lua files inside it and copy this folder to Kong’s container in docker via the below command.
 
 ```
-docker cp {path}/keycloak-introspection kong_gateway:/usr/local/share/lua/5.1/kong/plugins
+docker cp {path}/mandate_header kong_gateway:/usr/local/share/lua/5.1/kong/plugins
 ```
 
 Create a kong.conf and add your newly created plugin and copy this as well.
 
 ```
-plugins = bundled,keycloak-introspection 
+plugins = bundled,mandate_header
 
 
 docker cp {path}/kong.conf kong_gateway:/etc/kong/kong.conf
