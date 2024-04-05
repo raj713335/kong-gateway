@@ -109,6 +109,7 @@ services:
       - kong-net
     volumes:
       - kong_data:/var/lib/postgresql/data
+
   zipkin:
     image: openzipkin/zipkin:latest
     container_name: zipkin
@@ -116,35 +117,47 @@ services:
       - 9411:9411
     networks:
       - kong-net
+
   elasticsearch:
-    image: elasticsearch:8.12.0
+    image: elasticsearch:8.11.3
     container_name: elasticsearch
+    restart: unless-stopped
     ports:
-      - 9200:9200
-      - 9300:9300
-    networks:
-      - kong-net
+      - "9200:9200"
+      - "9300:9300"
     environment:
-      ES_JAVA_OPTS: -Xms1024m -Xmx1024m
-      discovery.type: single-node
-  logstash:
-    image: logstash:8.12.0
-    container_name: logstash
-    ports:
-      - 5555:5555/udp
-      - 5044:5044
-      - 9600:9600
+      - ES_JAVA_OPTS=-Xms256m -Xmx1024m
+      - discovery.type=single-node
     networks:
-      - kong-net
-    depends_on:
-      - elasticsearch
+      kong-net:
+        ipv4_address: 172.1.1.21
+
   kibana:
-    image: kibana:8.12.0
+    image: kibana:8.11.3
     container_name: kibana
+    restart: unless-stopped
     ports:
-      - 5601:5601
+      - "5601:5601"
     networks:
-      - kong-net
+      kong-net:
+        ipv4_address: 172.1.1.22
+
+  logstash:
+    image: logstash:8.11.3
+    container_name: logstash
+    restart: unless-stopped
+    ports:
+      - "5555:5555/udp"
+      - "5044:5044"
+      - "9600:9600"
+    volumes:
+      - "./logstash/:/usr/share/logstash/pipeline/"
+    environment:
+      - MONITORING_ENABLED=false
+    networks:
+      kong-net:
+        ipv4_address: 172.1.1.23
+
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
@@ -152,6 +165,7 @@ services:
       - 9090:9090
     networks:
       - kong-net
+
   grafana:
     image: grafana/grafana:latest
     ports:
