@@ -76,12 +76,25 @@ services:
       interval: 10s
       timeout: 10s
       retries: 10
-    restart: on-failure:5
+    restart: on-failure
     volumes:
       - kong_prefix_vol:${KONG_PREFIX:-/var/run/kong}
       - kong_tmp_vol:/tmp
     security_opt:
       - no-new-privileges
+
+  konga_web:
+    image: pantsel/konga
+    container_name: konga_web
+    ports:
+      - 1337:1337
+    networks:
+      - kong-net
+    environment:
+      NODE_ENV: development
+      TOKEN_SECRET: secret
+    depends_on:
+      - kong
 
   kong-database:
     image: postgres:16-alpine
