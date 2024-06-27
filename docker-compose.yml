@@ -175,14 +175,17 @@ services:
     image: prom/prometheus:latest
     container_name: prometheus
     ports:
-      - 9090:9090
+      - "9090:9090"
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
     networks:
       - kong-net
 
   grafana:
     image: grafana/grafana:latest
     ports:
-      - 3000:3000
+      - "3000:3000"
     networks:
       - kong-net
+
 
