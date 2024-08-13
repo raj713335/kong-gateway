@@ -28,7 +28,7 @@ networks:
 
 services:
   kong-migrations:
-    image: kong:3.6
+    image: kong:3.7.1
     command: kong migrations bootstrap
     environment:
       <<: *kong-env
@@ -39,7 +39,7 @@ services:
       - kong-database
 
   kong-migrations-up:
-    image: kong:3.6
+    image: kong:3.7.1
     command: kong migrations up && kong migrations finish
     environment:
       <<: *kong-env
@@ -50,7 +50,7 @@ services:
       - kong-database
 
   kong:
-    image: kong:3.6
+    image: kong:3.7.1
     user: "${KONG_USER:-kong}"
     environment:
       <<: *kong-env
