@@ -1,0 +1,1549 @@
+{
+	"info": {
+		"_postman_id": "86822014-91cb-4a09-8f2c-936c0d8a0943",
+		"name": "Kong",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8661183"
+	},
+	"item": [
+		{
+			"name": "Authentication Plugin",
+			"item": [
+				{
+					"name": "FastAPI Kong Basic Authentication",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "ABC",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ABC",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/kong/healthy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"kong",
+								"healthy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FastAPI Kong HMAC Authentication",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Date",
+								"value": "Mon, 01 Apr 2024 07:38:00 GMT",
+								"type": "text"
+							},
+							{
+								"key": "Dummy",
+								"value": "Kong",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "hmac username=\"ABC\", algorithm=\"hmac-sha256\", headers=\"date dummy @request-target\", signature=\"mo6P4UuK0f9IEkmkNPOJrEOV0PTyzJQTqzZXx2nCdh8=\"",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/kong/healthy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"kong",
+								"healthy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FastAPI Kong JWT Authentication",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTE5Njk2ODIsImlzcyI6IkFCQyJ9.rUX1GMMroC2f4Ll1_1w0rJmSGj57QJdZDrcUzoLYHUM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/kong/healthy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"kong",
+								"healthy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FastAPI Kong Key Authentication",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "vYqpkaSfmCZ1Ry2iJd5dc1Q8pwYnXfYp",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/kong/healthy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"kong",
+								"healthy"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "vYqpkaSfmCZ1Ry2iJd5dc1Q8pwYnXfYp",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FastAPI Kong Key OAuth2",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/kong/healthy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"kong",
+								"healthy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FastAPI Kong Key OAuth2 Token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\": \"ABC\",\r\n    \"client_secret\": \"ABC\",\r\n    \"grant_type\": \"ABC\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/healthy/oauth2/token",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"healthy",
+								"oauth2",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Logstash",
+			"item": [
+				{
+					"name": "FastAPI Kong",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/kong/healthy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"kong",
+								"healthy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MockAPI  Kong",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "ABC",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ABC",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "Hlfj63XF0y8mpxBnbtI1GSGGCje2TxGv",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/kong-mock/healthy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"kong-mock",
+								"healthy"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AI-Proxy",
+			"item": [
+				{
+					"name": "LLM OpenAI Service",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Ai-Proxy",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"value": "http://localhost:32000",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8001/services",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"services"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "LLM OpenAI Service",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Ai-Proxy",
+											"type": "text"
+										},
+										{
+											"key": "url",
+											"value": "http://localhost:32000",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8001/services",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"services"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Aug 2024 12:01:19 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Length",
+									"value": "370"
+								},
+								{
+									"key": "X-Kong-Admin-Latency",
+									"value": "13"
+								},
+								{
+									"key": "Server",
+									"value": "kong/3.7.1"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"host\": \"localhost\",\n    \"name\": \"Ai-Proxy\",\n    \"tls_verify_depth\": null,\n    \"retries\": 5,\n    \"created_at\": 1724241679,\n    \"path\": null,\n    \"port\": 32000,\n    \"client_certificate\": null,\n    \"tags\": null,\n    \"ca_certificates\": null,\n    \"enabled\": true,\n    \"tls_verify\": null,\n    \"id\": \"b1729763-8de2-4641-9d98-8c48b7ecc3d9\",\n    \"protocol\": \"http\",\n    \"write_timeout\": 60000,\n    \"connect_timeout\": 60000,\n    \"updated_at\": 1724241679,\n    \"read_timeout\": 60000\n}"
+						}
+					]
+				},
+				{
+					"name": "LLM OpenAI Route",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "AI-Proxy-Route",
+									"type": "text"
+								},
+								{
+									"key": "paths[]",
+									"value": "~/openai-chat$",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8001/services/Ai-Proxy/routes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"services",
+								"Ai-Proxy",
+								"routes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "LLM OpenAI Route",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "AI-Proxy-Route",
+											"type": "text"
+										},
+										{
+											"key": "paths[]",
+											"value": "~/openai-chat$",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8001/services/Ai-Proxy/routes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"services",
+										"Ai-Proxy",
+										"routes"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Aug 2024 12:01:27 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Length",
+									"value": "495"
+								},
+								{
+									"key": "X-Kong-Admin-Latency",
+									"value": "10"
+								},
+								{
+									"key": "Server",
+									"value": "kong/3.7.1"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"AI-Proxy-Route\",\n    \"preserve_host\": false,\n    \"hosts\": null,\n    \"path_handling\": \"v0\",\n    \"paths\": [\n        \"~/openai-chat$\"\n    ],\n    \"sources\": null,\n    \"regex_priority\": 0,\n    \"service\": {\n        \"id\": \"b1729763-8de2-4641-9d98-8c48b7ecc3d9\"\n    },\n    \"destinations\": null,\n    \"snis\": null,\n    \"request_buffering\": true,\n    \"response_buffering\": true,\n    \"methods\": null,\n    \"headers\": null,\n    \"https_redirect_status_code\": 426,\n    \"id\": \"b2087bcd-346b-4c8f-9928-74cb8122b2ac\",\n    \"tags\": null,\n    \"protocols\": [\n        \"http\",\n        \"https\"\n    ],\n    \"created_at\": 1724241687,\n    \"updated_at\": 1724241687,\n    \"strip_path\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "LLM OpenAI AI-Proxy Plugin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "ai-proxy",
+									"type": "text"
+								},
+								{
+									"key": "config.route_type",
+									"value": "llm/v1/chat",
+									"type": "text"
+								},
+								{
+									"key": "config.auth.header_name",
+									"value": "Authorization",
+									"type": "text"
+								},
+								{
+									"key": "config.auth.header_value",
+									"value": "Bearer <Token>",
+									"type": "text"
+								},
+								{
+									"key": "config.model.provider",
+									"value": "openai",
+									"type": "text"
+								},
+								{
+									"key": "config.model.name",
+									"value": "gpt-4",
+									"type": "text"
+								},
+								{
+									"key": "config.model.options.max_tokens",
+									"value": "512",
+									"type": "text"
+								},
+								{
+									"key": "config.model.options.temperature",
+									"value": "1.0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8001/routes/AI-Proxy-Route/plugins",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"routes",
+								"AI-Proxy-Route",
+								"plugins"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "LLM OpenAI AI-Proxy Plugin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "ai-proxy",
+											"type": "text"
+										},
+										{
+											"key": "config.route_type",
+											"value": "llm/v1/chat",
+											"type": "text"
+										},
+										{
+											"key": "config.auth.header_name",
+											"value": "Authorization",
+											"type": "text"
+										},
+										{
+											"key": "config.auth.header_value",
+											"value": "Bearer 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",
+											"type": "text"
+										},
+										{
+											"key": "config.model.provider",
+											"value": "openai",
+											"type": "text"
+										},
+										{
+											"key": "config.model.name",
+											"value": "gpt-4",
+											"type": "text"
+										},
+										{
+											"key": "config.model.options.max_tokens",
+											"value": "512",
+											"type": "text"
+										},
+										{
+											"key": "config.model.options.temperature",
+											"value": "1.0",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8001/routes/AI-Proxy-Route/plugins",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"routes",
+										"AI-Proxy-Route",
+										"plugins"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Aug 2024 12:01:31 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Length",
+									"value": "973"
+								},
+								{
+									"key": "X-Kong-Admin-Latency",
+									"value": "11"
+								},
+								{
+									"key": "Server",
+									"value": "kong/3.7.1"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"enabled\": true,\n    \"name\": \"ai-proxy\",\n    \"config\": {\n        \"auth\": {\n            \"param_location\": null,\n            \"header_value\": \"Bearer <Token>\",\n            \"param_name\": null,\n            \"header_name\": \"Authorization\",\n            \"param_value\": null\n        },\n        \"response_streaming\": \"allow\",\n        \"model\": {\n            \"provider\": \"openai\",\n            \"options\": {\n                \"azure_api_version\": \"2023-05-15\",\n                \"azure_deployment_id\": null,\n                \"max_tokens\": 512,\n                \"llama2_format\": null,\n                \"temperature\": 1,\n                \"top_p\": null,\n                \"mistral_format\": null,\n                \"top_k\": null,\n                \"upstream_url\": null,\n                \"anthropic_version\": null,\n                \"upstream_path\": null,\n                \"azure_instance\": null\n            },\n            \"name\": \"gpt-4\"\n        },\n        \"logging\": {\n            \"log_payloads\": false,\n            \"log_statistics\": false\n        },\n        \"route_type\": \"llm/v1/chat\"\n    },\n    \"tags\": null,\n    \"route\": {\n        \"id\": \"b2087bcd-346b-4c8f-9928-74cb8122b2ac\"\n    },\n    \"instance_name\": null,\n    \"consumer\": null,\n    \"id\": \"21a13ae7-3acd-4ef5-b460-1104843885b6\",\n    \"protocols\": [\n        \"grpc\",\n        \"grpcs\",\n        \"http\",\n        \"https\"\n    ],\n    \"created_at\": 1724241691,\n    \"updated_at\": 1724241691,\n    \"service\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "LLM OpenAI Response",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-llm",
+								"value": "openai",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": [\r\n        {\r\n            \"role\": \"system\",\r\n            \"content\": \"You are a computer scientist\"\r\n        },\r\n        {\r\n            \"role\": \"user\",\r\n            \"content\": \"what is 1 + 1, and when was Asian Games hosted in China\"\r\n        }\r\n    ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/openai-chat",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"openai-chat"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "LLM OpenAI Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-llm",
+										"value": "openai",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Encoding",
+										"value": "*",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"messages\": [\r\n        {\r\n            \"role\": \"system\",\r\n            \"content\": \"You are a computer scientist\"\r\n        },\r\n        {\r\n            \"role\": \"user\",\r\n            \"content\": \"what is 1 + 1, and when was Asian Games hosted in China\"\r\n        }\r\n    ]\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8000/openai-chat",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"openai-chat"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=15552000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-ratelimit-limit-requests",
+									"value": "10000"
+								},
+								{
+									"key": "x-ratelimit-limit-tokens",
+									"value": "10000"
+								},
+								{
+									"key": "x-ratelimit-remaining-requests",
+									"value": "9999"
+								},
+								{
+									"key": "x-ratelimit-remaining-tokens",
+									"value": "9465"
+								},
+								{
+									"key": "x-ratelimit-reset-requests",
+									"value": "8.64s"
+								},
+								{
+									"key": "x-ratelimit-reset-tokens",
+									"value": "3.21s"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "x-request-id",
+									"value": "req_36a924f0d337d249d9d5465b9cd3b760"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "CF-Cache-Status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "8b6a7af0e9c87e6d-MAA"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Aug 2024 12:03:32 GMT"
+								},
+								{
+									"key": "openai-organization",
+									"value": "user-fpf0e9jp1gunvj5oeouzsanq"
+								},
+								{
+									"key": "openai-processing-ms",
+									"value": "2120"
+								},
+								{
+									"key": "openai-version",
+									"value": "2020-10-01"
+								},
+								{
+									"key": "X-Kong-Upstream-Latency",
+									"value": "2925"
+								},
+								{
+									"key": "X-Kong-Proxy-Latency",
+									"value": "1"
+								},
+								{
+									"key": "Via",
+									"value": "kong/3.7.1"
+								},
+								{
+									"key": "X-Kong-Request-Id",
+									"value": "41e8cd61b5c36046e49849322c89a042"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"chatcmpl-9yeLiPu2oEFod9UM4QzndMPeTQxfL\",\n    \"object\": \"chat.completion\",\n    \"created\": 1724241810,\n    \"model\": \"gpt-4-0613\",\n    \"choices\": [\n        {\n            \"index\": 0,\n            \"message\": {\n                \"role\": \"assistant\",\n                \"content\": \"1 + 1 equals 2. The Asian Games were hosted in China in the years 1990 and 2010.\",\n                \"refusal\": null\n            },\n            \"logprobs\": null,\n            \"finish_reason\": \"stop\"\n        }\n    ],\n    \"usage\": {\n        \"prompt_tokens\": 32,\n        \"completion_tokens\": 26,\n        \"total_tokens\": 58\n    },\n    \"system_fingerprint\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "LLM OpenAI AI Prompt Template Plugin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-llm",
+								"value": "openai"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"messages\": \"{template://translator}\",\n    \"properties\": {\n        \"language\": \"spanish\",\n        \"text\": \"I would like to eat ice-cream\"\n    }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/openai-chat",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"openai-chat"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "LLM OpenAI AI Prompt Template Plugin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-llm",
+										"value": "openai"
+									},
+									{
+										"key": "Accept-Encoding",
+										"value": "*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"messages\": \"{template://translator}\",\n    \"properties\": {\n        \"language\": \"spanish\",\n        \"text\": \"I would like to eat ice-cream\"\n    }\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8000/openai-chat",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"openai-chat"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "openai-version",
+									"value": "2020-10-01"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=15552000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-ratelimit-limit-requests",
+									"value": "10000"
+								},
+								{
+									"key": "x-ratelimit-limit-tokens",
+									"value": "10000"
+								},
+								{
+									"key": "x-ratelimit-remaining-requests",
+									"value": "9999"
+								},
+								{
+									"key": "x-ratelimit-remaining-tokens",
+									"value": "9459"
+								},
+								{
+									"key": "x-ratelimit-reset-requests",
+									"value": "8.64s"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "x-ratelimit-reset-tokens",
+									"value": "3.246s"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "x-request-id",
+									"value": "req_82ee58fccfbc141fc42ae7a71e2b0fa4"
+								},
+								{
+									"key": "CF-Cache-Status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "8b6b77c0ce9f7fef-MAA"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Aug 2024 14:56:07 GMT"
+								},
+								{
+									"key": "openai-organization",
+									"value": "user-fpf0e9jp1gunvj5oeouzsanq"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								},
+								{
+									"key": "openai-processing-ms",
+									"value": "2225"
+								},
+								{
+									"key": "X-Kong-Upstream-Latency",
+									"value": "2611"
+								},
+								{
+									"key": "X-Kong-Proxy-Latency",
+									"value": "1"
+								},
+								{
+									"key": "Via",
+									"value": "kong/3.7.1"
+								},
+								{
+									"key": "X-Kong-Request-Id",
+									"value": "cc4c0449ed7ccd6201d6af68c965d61b"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"chatcmpl-9yh2jF2Tmp0ZXte7o2TSsoHFGet37\",\n    \"object\": \"chat.completion\",\n    \"created\": 1724252165,\n    \"model\": \"gpt-4-0613\",\n    \"choices\": [\n        {\n            \"index\": 0,\n            \"message\": {\n                \"role\": \"assistant\",\n                \"content\": \"In French, \\\"I would like to eat bananas\\\" is \\\"J'aimerais manger des bananes\\\".\",\n                \"refusal\": null\n            },\n            \"logprobs\": null,\n            \"finish_reason\": \"stop\"\n        }\n    ],\n    \"usage\": {\n        \"prompt_tokens\": 32,\n        \"completion_tokens\": 23,\n        \"total_tokens\": 55\n    },\n    \"system_fingerprint\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "LLM OpenAI Request Transformer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-llm",
+								"value": "openai",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "cc",
+									"value": "424242424242",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/openai-chat",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"openai-chat"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Prometheus",
+			"item": [
+				{
+					"name": "FastAPI Kong",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/kong/healthy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"kong",
+								"healthy"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FastAPI",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/healthy",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"healthy"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "FastAPI",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/healthy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"healthy"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "date",
+							"value": "Wed, 21 Aug 2024 15:07:42 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "20"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Healthy\"\n}"
+				}
+			]
+		},
+		{
+			"name": "MockAPI ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://66bbd74324da2de7ff68c96a.mockapi.io/healthy",
+					"protocol": "https",
+					"host": [
+						"66bbd74324da2de7ff68c96a",
+						"mockapi",
+						"io"
+					],
+					"path": [
+						"healthy"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "MockAPI",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://66bbd74324da2de7ff68c96a.mockapi.io/healthy",
+							"protocol": "https",
+							"host": [
+								"66bbd74324da2de7ff68c96a",
+								"mockapi",
+								"io"
+							],
+							"path": [
+								"healthy"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"max_age\":3600,\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?ts=1724252869&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=HWwBh2mwyrKvNmS4Fkp86wiY4lBR46EsD3co63JZ438%3D\"}]}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=https://nel.heroku.com/reports?ts=1724252869&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=HWwBh2mwyrKvNmS4Fkp86wiY4lBR46EsD3co63JZ438%3D"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"max_age\":3600,\"success_fraction\":0.005,\"failure_fraction\":0.05,\"response_headers\":[\"Via\"]}"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET,PUT,POST,DELETE,OPTIONS"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "X-Requested-With,Content-Type,Cache-Control,access_token"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "22"
+						},
+						{
+							"key": "Etag",
+							"value": "\"191317693\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 21 Aug 2024 15:07:49 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"status\": \"Healthy\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "FastAPI Kong",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/raj71/Desktop/Kong.pptx"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/kong/healthy",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"kong",
+						"healthy"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "FastAPI Kong",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/raj71/Desktop/Kong.pptx"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/kong/healthy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"kong",
+								"healthy"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "20"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "date",
+							"value": "Wed, 21 Aug 2024 15:07:53 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "X-Kong-Upstream-Latency",
+							"value": "7"
+						},
+						{
+							"key": "X-Kong-Proxy-Latency",
+							"value": "43"
+						},
+						{
+							"key": "Via",
+							"value": "kong/3.7.1"
+						},
+						{
+							"key": "X-Kong-Request-Id",
+							"value": "9ea814552ba0d43f884ca179df90e236"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Healthy\"\n}"
+				}
+			]
+		},
+		{
+			"name": "MockAPI  Kong",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "Hlfj63XF0y8mpxBnbtI1GSGGCje2TxGv",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/kong-mock/healthy",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"kong-mock",
+						"healthy"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "MockAPI  Kong",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "Hlfj63XF0y8mpxBnbtI1GSGGCje2TxGv",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8000/kong-mock/healthy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"kong-mock",
+								"healthy"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "22"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"max_age\":3600,\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?ts=1724252879&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=FncF6poBAzN1Iyvm4wV8k%2FFod4jfIRydhVQP9IzaPHQ%3D\"}]}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=https://nel.heroku.com/reports?ts=1724252879&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=FncF6poBAzN1Iyvm4wV8k%2FFod4jfIRydhVQP9IzaPHQ%3D"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"max_age\":3600,\"success_fraction\":0.005,\"failure_fraction\":0.05,\"response_headers\":[\"Via\"]}"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET,PUT,POST,DELETE,OPTIONS"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "X-Requested-With,Content-Type,Cache-Control,access_token"
+						},
+						{
+							"key": "Etag",
+							"value": "\"191317693\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 21 Aug 2024 15:07:59 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "kong/3.7.1"
+						},
+						{
+							"key": "X-Kong-Upstream-Latency",
+							"value": "1228"
+						},
+						{
+							"key": "X-Kong-Proxy-Latency",
+							"value": "132"
+						},
+						{
+							"key": "X-Kong-Request-Id",
+							"value": "e06335066ce5ea2b0b1a8379a58b1012"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"status\": \"Healthy\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Upstream Healthy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8001/upstreams/FastAPI-Upstream/health?balancer_health=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"upstreams",
+						"FastAPI-Upstream",
+						"health"
+					],
+					"query": [
+						{
+							"key": "balancer_health",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
