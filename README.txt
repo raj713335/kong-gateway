@@ -2,7 +2,7 @@ I. RUN CONTAINERS
 
 Open terminal, and run this command
 
-#> docker-compose down && docker-compose up -d
+#> docker-compose -f docker-compose.yml up -d --build
 
 Wait about 5 minutes for all the elastic container to starts
 

@@ -1,4 +1,8 @@
+<h1 align="center"><a href="https://www.udemy.com/course/kong-api-gateway-from-zero-to-hero/"> Kong: API Gateway from Zero to Hero</a></h1>
 
+<p align="center">
+  <img src="data/kong.png" />
+</p> 
 
 
 # Kong Docker Setup
