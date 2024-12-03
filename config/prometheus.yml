@@ -1,7 +1,8 @@
 global:
-  scrape_interval: 30s
+  scrape_interval: 15s
 
 scrape_configs:
   - job_name: kong-prometheus
+    metrics_path: /metrics
     static_configs:
-      - targets: ['docker-kong-1:8001']
+      - targets: ['host.docker.internal:8001']

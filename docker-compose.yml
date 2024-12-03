@@ -1,5 +1,3 @@
-version: '3.9'
-
 x-kong-config:
   &kong-env
   KONG_DATABASE: ${KONG_DATABASE:-postgres}
@@ -63,6 +61,7 @@ services:
       KONG_PROXY_ERROR_LOG: /dev/stderr
       KONG_PREFIX: ${KONG_PREFIX:-/var/run/kong}
       KONG_TRACING_INSTRUMENTATIONS: "request"
+      KONG_PROMETHEUS_ENABLED: "on"
     networks:
       - kong-net
     ports:
@@ -122,6 +121,32 @@ services:
       - kong-net
     volumes:
       - kong_data:/var/lib/postgresql/data
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: keycloak
+    environment:
+      DB_VENDOR: postgres
+      DB_ADDR: kong-database
+      DB_DATABASE: kong
+      DB_USER: kong
+      DB_PASSWORD: mykongpassword
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_HOSTNAME: "http://localhost:8080"  # Set to localhost or your specific hostname
+      KC_HOSTNAME_STRICT: "false"
+      KEYCLOAK_FRONTEND_URL: "http://localhost:8080"  # Set to HTTP
+      KC_HTTPS_PORT: -1  # Disable HTTPS port
+      KC_SSL_REQUIRED: "none"
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin  # Set new environment variables for admin username
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin  # Set
+    command: ["start-dev", "--http-enabled=true"]
+    ports:
+      - "8080:8080"
+    depends_on:
+      - kong-database
+    networks:
+      - kong-net
 
   zipkin:
     image: openzipkin/zipkin:latest
@@ -187,5 +212,3 @@ services:
       - "3000:3000"
     networks:
       - kong-net
-
-
