@@ -1,4 +1,12 @@
-<h1 align="center"><a href="https://www.udemy.com/course/kong-api-gateway-from-zero-to-hero/"> Kong: API Gateway from Zero to Hero</a></h1>
+<h1 align="center">
+  <a href="https://www.udemy.com/course/kong-api-gateway-from-zero-to-hero/?referralCode=020A8E19C892DE0701A3"> 
+    Kong: API Gateway from Zero to Hero
+  </a>
+</h1>
+
+<p align="center">
+  Master the Art of API Management with Kong, Docker, Zipkin, Prometheus, Grafana, Elasticsearch, Kibana, Logstash, GenAI
+</p>
 
 <p align="center">
   <img src="data/kong.png" />
